@@ -22,7 +22,7 @@ class HotelListFragment: Fragment() {
     val viewModel: HotelListingViewModel by activityViewModels()
 
     private val hotelAdapter: HotelListAdapter by lazy {
-        HotelListAdapter()
+        HotelListAdapter(viewModel)
     }
 
     override fun onCreateView(

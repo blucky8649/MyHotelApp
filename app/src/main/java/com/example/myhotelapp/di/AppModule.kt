@@ -1,9 +1,12 @@
 package com.example.myhotelapp.di
 
+import android.app.Application
 import androidx.paging.ExperimentalPagingApi
+import androidx.room.Room
 import com.example.myhotelapp.data.remote.HotelApi
 import com.example.myhotelapp.data.repository.HotelRepository
 import com.example.myhotelapp.data.repository.HotelRepositoryImpl
+import com.example.myhotelapp.db.HotelDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,9 +17,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+@ExperimentalPagingApi
 @Module
 @InstallIn(SingletonComponent::class)
-@ExperimentalPagingApi
 object AppModule {
 
     @Provides
@@ -37,5 +40,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRepository(api: HotelApi): HotelRepository = HotelRepositoryImpl(api)
+    fun provideRoomDatabase(app: Application): HotelDatabase =
+        Room.databaseBuilder(
+            app,
+            HotelDatabase::class.java,
+            "favorite_room_db.db"
+        ).build()
+
+    @Provides
+    @Singleton
+    fun provideRepository(api: HotelApi, db: HotelDatabase): HotelRepository = HotelRepositoryImpl(api, db)
 }

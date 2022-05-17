@@ -5,13 +5,17 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.myhotelapp.data.remote.HotelApi
+import com.example.myhotelapp.db.HotelDatabase
 import com.example.myhotelapp.model.Data
 import com.example.myhotelapp.model.Product
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import retrofit2.HttpException
 import java.io.IOException
 
 @ExperimentalPagingApi
-class HotelPagingSource(val api: HotelApi) : PagingSource<Int, Product>() {
+class HotelPagingSource(val api: HotelApi, val db: HotelDatabase) : PagingSource<Int, Product>() {
     override fun getRefreshKey(state: PagingState<Int, Product>): Int? {
         return state.anchorPosition
     }
@@ -20,9 +24,14 @@ class HotelPagingSource(val api: HotelApi) : PagingSource<Int, Product>() {
         return try {
             val page = params.key ?: 1
             val response = api.getHotelInfo(page)
-            Log.d("PagingAdapter", "${response} 아아ㅏㄴ어림ㄴ $page")
+
             LoadResult.Page(
-                if (response.code == 200 || response.msg == "성공") response.data.product else listOf(),
+                if (response.code == 200 || response.msg == "성공")
+                    response.data.product.map {
+                        val state = CoroutineScope(Dispatchers.IO)
+                            .async { db.dao.getSavedState(it.id) }
+                        it.copy(likeState = state.await())
+                } else listOf(),
                 prevKey = null,
                 nextKey = if (response.code != 200) null else page + 1
             )

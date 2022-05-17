@@ -12,7 +12,9 @@ import com.example.myhotelapp.model.Product
 import com.example.myhotelapp.utils.toFormattedDateString
 import com.example.myhotelapp.utils.toWon
 
-class HotelListAdapter: PagingDataAdapter<Product, HotelListAdapter.HotelListViewHolder>(differCallback) {
+class HotelListAdapter(
+    private val viewModel: HotelListingViewModel
+    ): PagingDataAdapter<Product, HotelListAdapter.HotelListViewHolder>(differCallback) {
 
     companion object {
         private val differCallback = object : DiffUtil.ItemCallback<Product>() {
@@ -38,6 +40,26 @@ class HotelListAdapter: PagingDataAdapter<Product, HotelListAdapter.HotelListVie
                     .load(item.thumbnail)
                     .centerCrop()
                     .into(ivProductImage)
+
+                btnLike.apply {
+                    isChecked = item.likeState
+                    setOnClickListener {
+                        when (item.likeState) {
+                            true -> {
+                                viewModel.setLikeState(
+                                    item = item,
+                                    state = false
+                                )
+                            }
+                            false -> {
+                                viewModel.setLikeState(
+                                    item = item,
+                                    state = true
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
     }
