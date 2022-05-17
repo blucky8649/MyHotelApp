@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/hotel_nav_graph"
+    app:startDestination="@id/hotelListFragment">
+
+    <fragment
+        android:id="@+id/hotelListFragment"
+        android:name="com.example.myhotelapp.presenter.HotelListFragment"
+        android:label="HotelListFragment" />
+    <fragment
+        android:id="@+id/hotelFavoriteFragment"
+        android:name="com.example.myhotelapp.presenter.HotelFavoriteFragment"
+        android:label="HotelFavoriteFragment" />
+</navigation>
