@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,8 +32,15 @@ class HotelListingViewModel @Inject constructor(
 
     fun setLikeState(item: Product, state: Boolean) = viewModelScope.launch {
         when(state) {
-            true -> repository.like(item.copy(likeState = state))
-            false -> repository.unLike(item.copy(likeState = state))
+            true -> repository.like(item.copy(likeState = state, time = Date().time))
+            false -> repository.unLike(item)
         }
+    }
+
+    fun setOrdering(orderCode: Int) = viewModelScope.launch {
+        _orderState.emit(orderState.value.copy(orderCode = orderCode))
+    }
+    fun setOrderingByCategory(categoryCode: Int) = viewModelScope.launch {
+        _orderState.emit(orderState.value.copy(categoryCode = categoryCode))
     }
 }

@@ -1,14 +1,14 @@
-package com.example.myhotelapp.presenter
+package com.example.myhotelapp.presenter.hotelListFragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myhotelapp.databinding.ItemProductBinding
 import com.example.myhotelapp.model.Product
+import com.example.myhotelapp.presenter.HotelListingViewModel
 import com.example.myhotelapp.utils.toFormattedDateString
 import com.example.myhotelapp.utils.toWon
 
@@ -35,7 +35,7 @@ class HotelListAdapter(
                 tvHotelName.text = item.name
                 tvHotelPrice.text = "${item.description.price.toWon()}원"
                 ratingbarSmall.rating = item.rate.div(2).toFloat()
-
+                tvRatingScore.text = item.rate.toString()
                 Glide.with(root)
                     .load(item.thumbnail)
                     .centerCrop()

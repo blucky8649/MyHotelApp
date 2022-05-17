@@ -6,10 +6,19 @@
 
     <fragment
         android:id="@+id/hotelListFragment"
-        android:name="com.example.myhotelapp.presenter.HotelListFragment"
-        android:label="HotelListFragment" />
+        android:name="com.example.myhotelapp.presenter.hotelListFragment.HotelListFragment"
+        android:label="방 목록" >
+
+        <action
+            android:id="@+id/action_hotelListFragment_to_hotelFavoriteFragment"
+            app:destination="@id/hotelFavoriteFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
     <fragment
         android:id="@+id/hotelFavoriteFragment"
-        android:name="com.example.myhotelapp.presenter.HotelFavoriteFragment"
-        android:label="HotelFavoriteFragment" />
+        android:name="com.example.myhotelapp.presenter.hotelFavoriteFragment.HotelFavoriteFragment"
+        android:label="찜 목록" />
 </navigation>

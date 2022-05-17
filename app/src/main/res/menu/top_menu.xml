@@ -16,7 +16,7 @@
         android:id="@+id/favorite"
         android:title="Order"
         android:icon="@drawable/ic_baseline_favorite_24"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         />
 
 

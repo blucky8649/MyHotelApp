@@ -56,15 +56,30 @@
             android:layout_marginBottom="5dp"
             android:text="Price" />
 
-        <RatingBar
-            android:id="@+id/ratingbarSmall"
-            style="@style/Widget.AppCompat.RatingBar.Small"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:numStars="5"
+            android:gravity="center"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="5dp"
-            android:rating="3" />
+            android:orientation="horizontal">
+
+            <RatingBar
+                android:id="@+id/ratingbarSmall"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="3" />
+
+            <TextView
+                android:id="@+id/tvRatingScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="5dp"
+                android:textStyle="bold"
+                tools:text = "9.13"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvCurrentDateTime"
