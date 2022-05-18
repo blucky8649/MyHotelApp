@@ -12,5 +12,5 @@ data class Product(
     val rate: Double,
     val thumbnail: String,
     val likeState: Boolean = false,
-    val time: Long?
+    val time: Long? = null
 ):Parcelable

@@ -25,4 +25,7 @@ interface HotelSaveDao {
     @Query("SELECT likeState FROM productsaveentity WHERE id = :id")
     fun getSavedState(id: Int): Boolean
 
+    @Query("SELECT time FROM productsaveentity WHERE id = :id")
+    fun getTime(id: Int): Long
+
 }

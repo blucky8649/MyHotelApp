@@ -39,7 +39,7 @@
     <fragment
         android:id="@+id/hotelDetailFragment"
         android:name="com.example.myhotelapp.presenter.hotelDetailFragment.HotelDetailFragment"
-        android:label="HotelDetailFragment">
+        android:label="상세 보기">
         <argument
             android:name="product"
             app:argType="com.example.myhotelapp.model.Product" />

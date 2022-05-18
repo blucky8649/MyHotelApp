@@ -16,9 +16,6 @@ interface HotelListDao {
     @Query("SELECT * FROM productlistentity")
     fun getHotelLIst(): Flow<List<ProductListEntity>>
 
-    @Query("SELECT likeState FROM productlistentity WHERE id = :id")
-    suspend fun getSavedState(id: Int): Boolean
-
     @Query("DELETE FROM productlistentity")
     suspend fun clearAll()
 

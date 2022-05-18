@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.PopupMenu
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -16,6 +17,8 @@ import com.example.myhotelapp.presenter.HotelListAdapter
 import com.example.myhotelapp.presenter.HotelListingViewModel
 import com.example.myhotelapp.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -38,10 +41,11 @@ class HotelFavoriteFragment: Fragment() {
     ): View? {
         _binding = FragmentHotelListBinding.inflate(layoutInflater, container, false)
         setupRecyclerView()
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.result.collectLatest {
-                hotelAdapter.submitList(it)
-            }
+        collectFavoriteState()
+        binding.progressBarMain.isVisible = false
+        binding.swipeRefreshLayout.apply {
+            isRefreshing = false
+            isEnabled = false
         }
         hotelAdapter.setOnItemClickListener {
             val bundle = bundleOf("product" to it)
@@ -49,6 +53,15 @@ class HotelFavoriteFragment: Fragment() {
         }
         return binding.root
     }
+
+    private fun collectFavoriteState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.result.collectLatest {
+                hotelAdapter.submitList(it)
+            }
+        }
+    }
+
     fun setupRecyclerView() {
         binding.recyclerView.apply {
             adapter = hotelAdapter

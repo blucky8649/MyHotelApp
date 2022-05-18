@@ -43,6 +43,10 @@ class HotelRepositoryImpl(
         return db.saveDao.getSavedState(id)
     }
 
+    override suspend fun getTime(id: Int): Long {
+        return db.saveDao.getTime(id)
+    }
+
     override suspend fun getRemoteHotelList(page: Int): Hotel {
         return api.getHotelInfo(page)
     }

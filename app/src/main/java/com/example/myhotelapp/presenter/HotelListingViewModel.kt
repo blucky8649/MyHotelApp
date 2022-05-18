@@ -75,7 +75,10 @@ class HotelListingViewModel @Inject constructor(
         if (response.code == 200 || response.msg == "성공") {
             val cachedList = response.data.product.map { product ->
                 val state = async { repository.getLikeState(product.id) }
-                product.copy(likeState = state.await())
+                val t = async { repository.getTime(product.id) }
+                val time = if (t.await() == 0.toLong()) null else t.await()
+                product
+                    .copy(likeState = state.await(), time = time)
             }.toList()
             repository.insertAll(cachedList)
             val count = repository.getCount()

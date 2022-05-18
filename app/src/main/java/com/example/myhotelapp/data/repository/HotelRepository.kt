@@ -12,6 +12,7 @@ interface HotelRepository {
     fun getSavedHotelList(categoryCode: Int, orderCode: Int): Flow<List<Product>>
     suspend fun unLike(keyword: Product)
     suspend fun getLikeState(id: Int): Boolean
+    suspend fun getTime(id: Int): Long
     suspend fun getRemoteHotelList(page: Int): Hotel
     suspend fun clear()
     suspend fun insertAll(item: List<Product>)

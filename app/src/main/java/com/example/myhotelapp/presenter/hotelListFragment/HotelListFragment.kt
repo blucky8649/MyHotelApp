@@ -49,14 +49,14 @@ class HotelListFragment: Fragment() {
         collectEndPageState()
         collectProductState()
         setupRecyclerView()
-
+        setupSwipeRefresh()
         hotelAdapter.setOnItemClickListener {
             val action = HotelListFragmentDirections.actionHotelListFragmentToHotelDetailFragment(it)
             findNavController().navigate(action)
         }
         return binding.root
     }
-    fun setupRecyclerView() {
+    private fun setupRecyclerView() {
         binding.recyclerView.apply {
             adapter = hotelAdapter
             layoutManager = LinearLayoutManager(activity)
@@ -103,7 +103,16 @@ class HotelListFragment: Fragment() {
         binding.progressBarMain.isVisible = false
         isLoading = false
     }
-    fun collectProductState() {
+    private fun setupSwipeRefresh() {
+        binding.swipeRefreshLayout.apply {
+            setOnRefreshListener {
+                viewModel.handleProductList(true)
+                isRefreshing = false
+            }
+        }
+
+    }
+    private fun collectProductState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.productState.collect { result ->
                 when(result) {
@@ -126,17 +135,17 @@ class HotelListFragment: Fragment() {
             }
         }
     }
-    fun collectEndPageState() {
+    private fun collectEndPageState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.isEndReached.collectLatest { isEndReached ->
                 isLastPage = isEndReached
             }
         }
     }
-    var isLoading = false
-    var isLastPage = false
-    var isScrolling = false
-    val scrollListener = object : RecyclerView.OnScrollListener() {
+    private var isLoading = false
+    private var isLastPage = false
+    private var isScrolling = false
+    private val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
             if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL)
