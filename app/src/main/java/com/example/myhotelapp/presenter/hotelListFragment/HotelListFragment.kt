@@ -107,6 +107,7 @@ class HotelListFragment: Fragment() {
         binding.swipeRefreshLayout.apply {
             setOnRefreshListener {
                 viewModel.handleProductList(true)
+                binding.recyclerView.setPadding(0, 0, 0, 200)
                 isRefreshing = false
             }
         }

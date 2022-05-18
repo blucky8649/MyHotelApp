@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 fun Long.toFormattedDateString() : String {
-    val format = SimpleDateFormat("yyyy-MM-dd (hh:mm:ss)")
+    val format = SimpleDateFormat("yyyy-MM-dd (HH:mm:ss)")
     val date = Date(this)
 
     return format.format(date)
