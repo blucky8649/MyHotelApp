@@ -60,6 +60,9 @@ class HotelListAdapter(
                         }
                     }
                 }
+                itemView.setOnClickListener {
+                    onItemClicklistener?.let { it(item) }
+                }
             }
         }
     }
@@ -72,5 +75,9 @@ class HotelListAdapter(
 
     override fun onBindViewHolder(holder: HotelListViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it) }
+    }
+    private var onItemClicklistener: ((Product) -> Unit)? = null
+    fun setOnItemClickListener(listener: (Product) -> Unit) {
+        onItemClicklistener = listener
     }
 }

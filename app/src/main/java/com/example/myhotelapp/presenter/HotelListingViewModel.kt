@@ -2,6 +2,7 @@ package com.example.myhotelapp.presenter
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.myhotelapp.data.repository.HotelRepository
 import com.example.myhotelapp.model.FilterOption
@@ -10,6 +11,7 @@ import com.example.myhotelapp.utils.Constants.ASC
 import com.example.myhotelapp.utils.Constants.ORDER_BY_DATETIME
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
@@ -28,7 +30,7 @@ class HotelListingViewModel @Inject constructor(
     val result = orderState.flatMapLatest {
         repository.getSavedHotelList(it.categoryCode, it.orderCode)
     }
-    fun fetchHotelList() = repository.letHotelList().cachedIn(viewModelScope)
+    fun fetchHotelList() : Flow<PagingData<Product>> = repository.letHotelList().cachedIn(viewModelScope)
 
     fun setLikeState(item: Product, state: Boolean) = viewModelScope.launch {
         when(state) {

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/drawable-v24/layout_rounded.xml" value="0.152" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.128" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/drawable/ic_baseline_favorite_24_red.xml" value="0.128" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.128" />
@@ -12,10 +13,12 @@
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/drawable/toggle_on.xml" value="0.128" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/drawable/toggle_selector.xml" value="0.128" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/layout/fragment_hotel_detail.xml" value="0.5107913669064749" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/layout/fragment_hotel_list.xml" value="0.12771739130434784" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/layout/hotel_list_fragment.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/layout/item_product.xml" value="0.4831932773109244" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/layout/item_product_loader.xml" value="0.1" />
+        <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/layout/item_tag_items.xml" value="3.0" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/menu/order_products.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/menu/order_products_category.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MyHotelApp/app/src/main/res/menu/top_menu.xml" value="0.33" />

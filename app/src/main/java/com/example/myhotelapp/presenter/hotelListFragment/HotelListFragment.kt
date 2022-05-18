@@ -1,8 +1,10 @@
 package com.example.myhotelapp.presenter.hotelListFragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.PopupMenu
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -40,19 +42,23 @@ class HotelListFragment: Fragment() {
     ): View? {
         _binding = FragmentHotelListBinding.inflate(layoutInflater, container, false)
         setupRecyclerView()
-
+        Log.d("Lee", "리프레시!")
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.fetchHotelList().collectLatest {
                 hotelAdapter.submitData(it)
             }
         }
-
+        hotelAdapter.setOnItemClickListener {
+            val bundle = bundleOf("product" to it)
+            findNavController().navigate(R.id.action_hotelListFragment_to_hotelDetailFragment, bundle)
+        }
         return binding.root
     }
     fun setupRecyclerView() {
         binding.recyclerView.apply {
-            adapter = hotelAdapter.withLoadStateFooter(loadStateAdapter)
+            adapter = hotelAdapter
             layoutManager = LinearLayoutManager(activity)
+            itemAnimator = null
         }
     }
     override fun onDestroyView() {
