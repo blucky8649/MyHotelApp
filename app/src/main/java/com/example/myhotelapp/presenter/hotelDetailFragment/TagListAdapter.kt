@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myhotelapp.databinding.ItemTagItemsBinding
-import com.example.myhotelapp.model.Product
 import com.example.myhotelapp.model.Tags
 
 class TagListAdapter: ListAdapter<Tags, TagListViewHolder>(differCallback) {

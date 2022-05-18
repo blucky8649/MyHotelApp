@@ -44,7 +44,7 @@ object AppModule {
         Room.databaseBuilder(
             app,
             HotelDatabase::class.java,
-            "favorite_room_db.db"
+            "favorite_room2_db.db"
         ).build()
 
     @Provides

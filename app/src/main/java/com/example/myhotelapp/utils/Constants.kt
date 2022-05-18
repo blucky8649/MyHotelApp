@@ -6,4 +6,6 @@ object Constants {
     const val ASC = 0
     const val DESC = 1
 
+    const val PAGE_SIZE = 20
+
 }

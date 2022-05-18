@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.myhotelapp.databinding.FragmentHotelDetailBinding
 import com.example.myhotelapp.model.Product
+import com.example.myhotelapp.model.entitiies.ProductSaveEntity
 import com.example.myhotelapp.model.Tags
 import com.example.myhotelapp.presenter.HotelListingViewModel
 import com.example.myhotelapp.utils.toWon
@@ -55,7 +56,7 @@ class HotelDetailFragment: Fragment() {
                 .load(item.description.imagePath)
                 .centerCrop()
                 .into(ivThumbnail)
-            tvPriceDetail.text = item.description.price.toWon()
+            tvPriceDetail.text = "${item.description.price.toWon()}원"
             tvRatingScoreDetail.text = item.rate.toString()
             ratingbarDetail.rating = item.rate.div(2).toFloat()
             tvTitleDetail.text = item.name

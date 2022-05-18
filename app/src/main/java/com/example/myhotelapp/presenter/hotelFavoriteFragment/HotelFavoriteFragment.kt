@@ -1,17 +1,18 @@
 package com.example.myhotelapp.presenter.hotelFavoriteFragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.PopupMenu
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myhotelapp.R
 import com.example.myhotelapp.databinding.FragmentHotelListBinding
+import com.example.myhotelapp.presenter.HotelListAdapter
 import com.example.myhotelapp.presenter.HotelListingViewModel
 import com.example.myhotelapp.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,10 +25,10 @@ class HotelFavoriteFragment: Fragment() {
     private var _binding: FragmentHotelListBinding? = null
     val binding get() = _binding!!
 
-    val viewModel: HotelListingViewModel by viewModels()
+    val viewModel: HotelListingViewModel by activityViewModels()
 
-    private val hotelAdapter: HotelListSavedAdapter by lazy {
-        HotelListSavedAdapter(viewModel)
+    private val hotelAdapter: HotelListAdapter by lazy {
+        HotelListAdapter(viewModel)
     }
 
     override fun onCreateView(

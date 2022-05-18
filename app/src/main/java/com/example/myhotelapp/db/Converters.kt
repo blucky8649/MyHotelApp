@@ -2,7 +2,6 @@ package com.example.myhotelapp.db
 
 import androidx.room.TypeConverter
 import com.example.myhotelapp.model.Description
-import com.example.myhotelapp.model.Product
 import com.google.gson.Gson
 
 class Converters {

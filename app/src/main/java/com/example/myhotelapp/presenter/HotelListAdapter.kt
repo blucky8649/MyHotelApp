@@ -1,4 +1,4 @@
-package com.example.myhotelapp.presenter.hotelFavoriteFragment
+package com.example.myhotelapp.presenter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myhotelapp.databinding.ItemProductBinding
 import com.example.myhotelapp.model.Product
-import com.example.myhotelapp.presenter.HotelListingViewModel
+import com.example.myhotelapp.model.entitiies.ProductSaveEntity
 import com.example.myhotelapp.utils.toFormattedDateString
 import com.example.myhotelapp.utils.toWon
 
-class HotelListSavedAdapter(
+class HotelListAdapter(
     private val viewModel: HotelListingViewModel
-    ): ListAdapter<Product, HotelListSavedAdapter.HotelListViewHolder>(differCallback) {
+    ): ListAdapter<Product, HotelListAdapter.HotelListViewHolder>(differCallback) {
 
     companion object {
         private val differCallback = object : DiffUtil.ItemCallback<Product>() {
